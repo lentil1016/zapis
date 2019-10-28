@@ -20,16 +20,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type ZAPIHandler struct {
+type Handler struct {
 	GetConfigString func() string
 	GetDebugMode    func() bool
 	SetDebugMode    func(bool)
 	GetHealth       func() bool
 }
 
-var z ZAPIHandler
+var z Handler
 
-func Bind(r *gin.Engine, h ZAPIHandler) {
+func Bind(r *gin.Engine, h Handler) {
 	// bind health check API
 	r.GET("configz", getConfig)
 	r.GET("healthz", healthz)
