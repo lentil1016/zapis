@@ -30,6 +30,7 @@ type Handler struct {
 var z Handler
 
 func Bind(r *gin.Engine, h Handler) {
+	z = h
 	// bind health check API
 	r.GET("configz", getConfig)
 	r.GET("healthz", healthz)
@@ -73,7 +74,7 @@ func postMode(c *gin.Context) {
 
 func healthz(c *gin.Context) {
 	if z.GetHealth == nil {
-		c.String(http.StatusNotImplemented, "not implemented")
+		c.String(http.StatusNotImplemented, "not implemented\n")
 		return
 	}
 	if z.GetHealth() {
